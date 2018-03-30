@@ -1,0 +1,51 @@
+{
+  "name": "project.book-marc-collection",
+  "version": "0.0.0",
+  "description": "Collection MARC of books from NBINET website.",
+  "main": "main.js",
+  "scripts": {
+    "build": "webpack",
+    "build:prod": "webpack -p",
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FlowerEatFish/project.book-marc-collection.git"
+  },
+  "keywords": [
+    "electron",
+    "react",
+    "redux"
+  ],
+  "author": "FlowerEatFish",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/FlowerEatFish/project.book-marc-collection/issues"
+  },
+  "homepage": "https://github.com/FlowerEatFish/project.book-marc-collection#readme",
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.4",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "css-loader": "^0.28.11",
+    "electron": "^1.8.4",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.9.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.7.0",
+    "mini-css-extract-plugin": "^0.4.0",
+    "node-sass": "^4.8.3",
+    "sass-loader": "^6.0.7",
+    "webpack": "^4.4.1",
+    "webpack-cli": "^2.0.13"
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "prop-types": "^15.6.1",
+    "react": "^16.3.0",
+    "react-dom": "^16.3.0",
+    "react-redux": "^5.0.7",
+    "redux": "^3.7.2"
+  }
+}
