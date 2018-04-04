@@ -1,8 +1,6 @@
 const axios = require('axios');
 
-const sleep = (ms) => {
-  return new Promise(resolve => setTimeout(resolve, ms));
-};
+const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 
 const getClassName = (htmlCode) => {
   if (htmlCode.includes('browseEntryData')) {
@@ -54,17 +52,15 @@ const collectData = (htmlCode) => {
   return container;
 };
 
-const collectHtmlCode = (url) => {
-  return new Promise((resolve) => {
-    axios({
-      method: 'get',
-      url,
-    })
-      .then((response) => {
-        resolve(response.data);
-      });
-  });
-};
+const collectHtmlCode = url => new Promise((resolve) => {
+  axios({
+    method: 'get',
+    url,
+  })
+    .then((response) => {
+      resolve(response.data);
+    });
+});
 
 const setUrl = (type, value) => {
   let url = null;
@@ -97,7 +93,7 @@ const collectAllResult = async (isbn) => {
       template = collectData(htmlCode);
       container1 = container1.concat(template);
 
-      for (let value of container1) {
+      for (const value of container1) {
         htmlCode = await collectHtmlCode(value);
         className = getClassName(htmlCode);
 
@@ -107,7 +103,7 @@ const collectAllResult = async (isbn) => {
             container2 = container2.concat(template);
             await sleep(250);
 
-            for (let value of container2) {
+            for (const value of container2) {
               htmlCode = await collectHtmlCode(value);
               template = collectData(htmlCode);
               template = {
@@ -116,7 +112,7 @@ const collectAllResult = async (isbn) => {
               };
               container3 = container3.concat(template);
               await sleep(250);
-            }     
+            }
             break;
           case 'bibItemsEntry':
             template = collectData(htmlCode);
@@ -138,7 +134,7 @@ const collectAllResult = async (isbn) => {
       template = collectData(htmlCode);
       container2 = container2.concat(template);
 
-      for (let value of container2) {
+      for (const value of container2) {
         htmlCode = await collectHtmlCode(value);
         template = collectData(htmlCode);
         template = {
@@ -163,6 +159,7 @@ const collectAllResult = async (isbn) => {
     default:
       break;
   }
+  return null;
 };
 
 const getDatabase = async (isbn) => {

@@ -8,23 +8,21 @@ const targetLibraryList = [
   '國家圖書館',
 ];
 
-const getTargetData = (database) => {
-  return new Promise((resolve) => {
-    let isMatch = false;
-    for (let library of targetLibraryList) {
-      for (let data of database) {
-        if (data.library.includes(library)) {
-          resolve(data);
-          isMatch = true;
-          break;
-        }
+const getTargetData = database => new Promise((resolve) => {
+  let isMatch = false;
+  for (const library of targetLibraryList) {
+    for (const data of database) {
+      if (data.library.includes(library)) {
+        resolve(data);
+        isMatch = true;
+        break;
       }
     }
-    if (!isMatch) {
-      resolve(null);
-    }
-  });
-};
+  }
+  if (!isMatch) {
+    resolve(null);
+  }
+});
 
 const getDatabase = async (isbn) => {
   const database = await collect.getDatabase(isbn);
@@ -40,6 +38,6 @@ const isbnList = [
   9789861859828,
 ];
 
-for (let isbn of isbnList) {
+for (const isbn of isbnList) {
   getDatabase(isbn);
 }
