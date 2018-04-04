@@ -1,5 +1,9 @@
 const axios = require('axios');
 
+const sleep = (ms) => {
+  return new Promise(resolve => setTimeout(resolve, ms));
+};
+
 const getClassName = (htmlCode) => {
   if (htmlCode.includes('browseEntryData')) {
     return 'browseEntryData';
@@ -36,13 +40,17 @@ const collectData = (htmlCode) => {
   const targetPosition = [];
   let initial = 0;
 
-  while (htmlCode.indexOf(className, initial) !== -1) {
-    targetPosition.push(htmlCode.indexOf(className, initial));
-    initial = htmlCode.indexOf(className, initial) + 1;
+  if (className === null) {
+    container.push('無');
+  } else {
+    while (htmlCode.indexOf(className, initial) !== -1) {
+      targetPosition.push(htmlCode.indexOf(className, initial));
+      initial = htmlCode.indexOf(className, initial) + 1;
+    }
+    targetPosition.forEach((value) => {
+      container.push(parserDataText(htmlCode, value, className));
+    });
   }
-  targetPosition.forEach((value) => {
-    container.push(parserDataText(htmlCode, value, className));
-  });
   return container;
 };
 
@@ -77,7 +85,7 @@ const setUrl = (type, value) => {
 const collectAllResult = async (isbn) => {
   const url = setUrl('isbn', isbn);
   let htmlCode = await collectHtmlCode(url);
-  const className = getClassName(htmlCode);
+  let className = getClassName(htmlCode);
   let template = null;
   let container1 = [];
   let container2 = [];
@@ -85,29 +93,48 @@ const collectAllResult = async (isbn) => {
 
   switch (className) {
     case 'browseEntryData':
-      console.log(`Run ${className}\n`);
+      console.log(`Run ${className}`);
       template = collectData(htmlCode);
       container1 = container1.concat(template);
 
       for (let value of container1) {
         htmlCode = await collectHtmlCode(value);
-        template = collectData(htmlCode);
-        container2 = container2.concat(template);
-      };
+        className = getClassName(htmlCode);
 
-      for (let value of container2) {
-        htmlCode = await collectHtmlCode(value);
-        template = collectData(htmlCode);
-        template = {
-          url: value,
-          template,
-        };
-        container3 = container3.concat(template);
-      };
+        switch (className) {
+          case 'briefcitTitle':
+            template = collectData(htmlCode);
+            container2 = container2.concat(template);
+            await sleep(250);
+
+            for (let value of container2) {
+              htmlCode = await collectHtmlCode(value);
+              template = collectData(htmlCode);
+              template = {
+                url: value,
+                library: template,
+              };
+              container3 = container3.concat(template);
+              await sleep(250);
+            }     
+            break;
+          case 'bibItemsEntry':
+            template = collectData(htmlCode);
+            template = {
+              url: value,
+              library: template,
+            };
+            container3 = container3.concat(template);
+            await sleep(250);
+            break;
+          default:
+            break;
+        }
+      }
 
       return container3;
     case 'briefcitTitle':
-      console.log(`Run ${className}\n`);
+      console.log(`Run ${className}`);
       template = collectData(htmlCode);
       container2 = container2.concat(template);
 
@@ -116,28 +143,29 @@ const collectAllResult = async (isbn) => {
         template = collectData(htmlCode);
         template = {
           url: value,
-          template,
+          library: template,
         };
         container3 = container3.concat(template);
-      };
+        await sleep(250);
+      }
 
       return container3;
     case 'bibItemsEntry':
-      console.log(`Run ${className}\n`);
+      console.log(`Run ${className}`);
       template = collectData(htmlCode);
       template = {
         url,
-        template,
+        library: template,
       };
       container3 = container3.concat(template);
+
       return container3;
     default:
       break;
   }
 };
 
-const getDatabase = async () => {
-  const isbn = 9576167485;
+const getDatabase = async (isbn) => {
   const res = {
     isbn,
     results: await collectAllResult(isbn),
@@ -146,4 +174,4 @@ const getDatabase = async () => {
   return res;
 };
 
-getDatabase();
+exports.getDatabase = getDatabase;
