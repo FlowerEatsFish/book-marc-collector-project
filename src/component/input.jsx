@@ -6,7 +6,7 @@ import { setIsbnPool } from '../action.jsx';
 class Input extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { value: null };
+    this.state = { value: '' };
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
   }

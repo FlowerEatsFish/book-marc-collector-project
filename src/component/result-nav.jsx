@@ -18,7 +18,10 @@ class ResultNav extends React.Component {
 }
 
 ResultNav.propTypes = {
-  container: PropTypes.arrayOf(PropTypes.string).isRequired,
+  container: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.string),
+    PropTypes.string,
+  ]).isRequired,
 };
 
 const mapStateToProps = (state) => {
