@@ -1,7 +1,7 @@
 import React from 'react';
 import Title from './title.jsx';
 import Input from './input.jsx';
-import Result from './result.jsx';
+import ResultNav from './result-nav.jsx';
 
 class App extends React.Component {
   render() {
@@ -9,7 +9,7 @@ class App extends React.Component {
       <div className="master">
         <Title />
         <Input />
-        <Result />
+        <ResultNav />
       </div>
     );
   }

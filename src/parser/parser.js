@@ -1,4 +1,4 @@
-const collect = require('./collect.js');
+import collect from './collect.js';
 
 const targetLibraryList = [
   '淡江大學圖書館',
@@ -10,34 +10,43 @@ const targetLibraryList = [
 
 const getTargetData = database => new Promise((resolve) => {
   let isMatch = false;
+  let res = {
+    target: null,
+    data: null,
+  };
   for (const library of targetLibraryList) {
     for (const data of database) {
       if (data.library.includes(library)) {
-        resolve(data);
+        res = {
+          target: library,
+          data,
+        };
+        resolve(res);
         isMatch = true;
         break;
       }
     }
   }
   if (!isMatch) {
-    resolve(null);
+    res = {
+      target: '無',
+      data: null,
+    };
+    resolve(res);
   }
 });
 
 const getDatabase = async (isbn) => {
-  const database = await collect.getDatabase(isbn);
+  const database = await collect(isbn);
   const data = await getTargetData(database.results);
-  console.log(`data: ${JSON.stringify(database.isbn)}`);
-  console.log(`data: ${JSON.stringify(data)}`);
+  const res = {
+    isbn,
+    library: data.data.library,
+    target: data.target,
+    url: data.data.url,
+  };
+  // console.log(`data: ${JSON.stringify(data)}`);
+  return res;
 };
 
-const isbnList = [
-  9789861856216,
-  9789861856469,
-  9789861858456,
-  9789861859828,
-];
-
-for (const isbn of isbnList) {
-  getDatabase(isbn);
-}
+export default getDatabase;

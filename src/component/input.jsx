@@ -36,7 +36,6 @@ class Input extends React.Component {
 }
 
 Input.propTypes = {
-  value: PropTypes.string.isRequired,
   onSetIsbnPool: PropTypes.func.isRequired,
 };
 

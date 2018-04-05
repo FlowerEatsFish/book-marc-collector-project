@@ -1,4 +1,4 @@
-const axios = require('axios');
+import axios from 'axios';
 
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 
@@ -167,8 +167,7 @@ const getDatabase = async (isbn) => {
     isbn,
     results: await collectAllResult(isbn),
   };
-  console.log(`response: ${JSON.stringify(res)}`);
   return res;
 };
 
-exports.getDatabase = getDatabase;
+export default getDatabase;

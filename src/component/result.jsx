@@ -1,55 +1,48 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import Data from './data.jsx';
 
 class Result extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      container: this.props.container,
+      html: null,
+    };
+    console.log(`this.state.container: ${this.state.container}`);
+  }
+  componentWillMount() {
+    const html = [];
+    if (this.state.container) {
+      this.state.container.forEach((value, index) => {
+        html.push(<Data index={index + 1} value={value} />);
+      });
+      this.setState({
+        html,
+      });
+    }
+  }
   render() {
-    const { container } = this.props;
     return (
-      <div>
-        <table className="result">
-          <thead>
-            <tr>
-              <th>編號</th>
-              <th>ISBN</th>
-              <th>已配對圖書館</th>
-              <th>已配對網址</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>1</td>
-              <td>{container}</td>
-              <td>國立淡江大學</td>
-              <td>https://github.com/</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>1234567890123</td>
-              <td>國立成功大學</td>
-              <td>https://github.com/</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+      <table className="result-nav">
+        <thead>
+          <tr>
+            <th>編號</th>
+            <th>ISBN</th>
+            <th>已配對圖書館</th>
+            <th>已配對網址</th>
+          </tr>
+        </thead>
+        <tbody>
+          {this.state.html}
+        </tbody>
+      </table>
     );
   }
 }
 
 Result.propTypes = {
-  container: PropTypes.string.isRequired,
+  container: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
-const mapStateToProps = (state) => {
-  const result = {
-    container: state.book.container,
-  };
-  return result;
-};
-
-const ReduxResult = connect(
-  mapStateToProps,
-  null,
-)(Result);
-
-export default ReduxResult;
+export default Result;
