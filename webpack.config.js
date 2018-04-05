@@ -19,6 +19,14 @@ module.exports = {
           loader: 'babel-loader',
           options: {
             presets: ['env', 'react'],
+            plugins: [
+              ['transform-runtime', {
+                helpers: false,
+                polyfill: false,
+                regenerator: true,
+              }],
+              'transform-async-to-generator',
+            ],
           },
         },
       },
