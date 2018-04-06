@@ -24,19 +24,15 @@ class Result extends React.Component {
   }
   render() {
     return (
-      <table className="result-nav">
-        <thead>
-          <tr>
-            <th>編號</th>
-            <th>ISBN</th>
-            <th>已配對圖書館</th>
-            <th>已配對網址</th>
-          </tr>
-        </thead>
-        <tbody>
-          {this.state.html}
-        </tbody>
-      </table>
+      <React.Fragment>
+        <div className="result header">
+          <p>編號</p>
+          <p>ISBN</p>
+          <p>已配對圖書館</p>
+          <p>已配對網址</p>
+        </div>
+        {this.state.html}
+      </React.Fragment>
     );
   }
 }

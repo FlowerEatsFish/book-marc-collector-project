@@ -24,12 +24,18 @@ class Input extends React.Component {
     return (
       <div className="input">
         <input
-          type="text"
-          value={this.state.value}
+          className="text"
           onChange={this.handleChange}
           placeholder="請輸入欲查詢的 ISBN"
+          type="text"
+          value={this.state.value}
         />
-        <input type="button" value="送出" onClick={this.handleClick} />
+        <input
+          className="submit"
+          onClick={this.handleClick}
+          type="button"
+          value="送出"
+        />
       </div>
     );
   }

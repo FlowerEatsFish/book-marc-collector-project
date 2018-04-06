@@ -22,26 +22,26 @@ class Data extends React.Component {
     return (
       <React.Fragment>
         { this.state.data ?
-          <tr>
-            <td>{this.state.index}</td>
-            <td>{this.state.value}</td>
-            <td>{this.state.data.target}</td>
-            <td>
+          <div className="result data">
+            <p className="index">{this.state.index}</p>
+            <p className="isbn">{this.state.value}</p>
+            <p className="library">{this.state.data.target}</p>
+            <p className="url">
               <a
                 href={this.state.data.url}
                 target="_blank"
               >
                 連結
               </a>
-            </td>
-          </tr>
+            </p>
+          </div>
           :
-          <tr>
-            <td>{this.state.index}</td>
-            <td>{this.state.value}</td>
-            <td>讀取中</td>
-            <td>讀取中</td>
-          </tr>
+          <div className="result data">
+            <p className="index">{this.state.index}</p>
+            <p className="isbn">{this.state.value}</p>
+            <p className="library">讀取中</p>
+            <p className="url">讀取中</p>
+          </div>
         }
       </React.Fragment>
     );
