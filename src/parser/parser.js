@@ -8,12 +8,27 @@ const targetLibraryList = [
   '國家圖書館',
 ];
 
-const getTargetData = database => new Promise((resolve) => {
+const isEmptyData = (data) => {
+  if (data == null) {
+    return true;
+  }
+  return false;
+};
+
+const setData = database => new Promise((resolve) => {
   let isMatch = false;
   let res = {
     target: null,
-    data: null,
+    data: {
+      library: null,
+      url: null,
+    },
   };
+  if (isEmptyData(database)) {
+    res.target = '查無資料';
+    resolve(res);
+    isMatch = true;
+  }
   for (const library of targetLibraryList) {
     for (const data of database) {
       if (data.library.includes(library)) {
@@ -28,17 +43,14 @@ const getTargetData = database => new Promise((resolve) => {
     }
   }
   if (!isMatch) {
-    res = {
-      target: '無',
-      data: null,
-    };
+    res.target = '沒有符合特定圖書館的資料';
     resolve(res);
   }
 });
 
 const getDatabase = async (isbn) => {
   const database = await collect(isbn);
-  const data = await getTargetData(database.results);
+  const data = await setData(database.results);
   const res = {
     isbn,
     library: data.data.library,

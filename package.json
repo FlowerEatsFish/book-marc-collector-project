@@ -1,6 +1,6 @@
 {
   "name": "project.book-marc-collection",
-  "version": "0.8.0",
+  "version": "0.9.0",
   "description": "Collection MARC of books from NBINET website.",
   "main": "main.js",
   "scripts": {

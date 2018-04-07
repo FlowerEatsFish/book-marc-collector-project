@@ -2,6 +2,13 @@ import axios from 'axios';
 
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 
+const isEmptyData = (htmlCode) => {
+  if (htmlCode.includes('沒有查獲符合查詢條件的館藏')) {
+    return true;
+  }
+  return false;
+};
+
 const getClassName = (htmlCode) => {
   if (htmlCode.includes('browseEntryData')) {
     return 'browseEntryData';
@@ -81,6 +88,11 @@ const setUrl = (type, value) => {
 const collectAllResult = async (isbn) => {
   const url = setUrl('isbn', isbn);
   let htmlCode = await collectHtmlCode(url);
+
+  if (isEmptyData(htmlCode)) {
+    return null;
+  }
+
   let className = getClassName(htmlCode);
   let template = null;
   let container1 = [];
