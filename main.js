@@ -9,8 +9,8 @@ let win;
 
 function createWindow() {
   win = new BrowserWindow({
-    width: 800,
-    height: 600,
+    width: 1280,
+    height: 720,
     icon: path.join(__dirname, './public/book.png'),
   });
 
@@ -21,7 +21,7 @@ function createWindow() {
   }));
 
   // Open DevTools.
-  win.webContents.openDevTools();
+  // win.webContents.openDevTools();
 
   win.on('closed', () => {
     win = null;
