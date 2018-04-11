@@ -101,7 +101,7 @@ const collectAllResult = async (isbn) => {
 
   switch (className) {
     case 'browseEntryData':
-      console.log(`Run ${className}`);
+      // console.log(`Run ${className}`);
       template = collectData(htmlCode);
       container1 = container1.concat(template);
 
@@ -142,7 +142,7 @@ const collectAllResult = async (isbn) => {
 
       return container3;
     case 'briefcitTitle':
-      console.log(`Run ${className}`);
+      // console.log(`Run ${className}`);
       template = collectData(htmlCode);
       container2 = container2.concat(template);
 
@@ -159,7 +159,7 @@ const collectAllResult = async (isbn) => {
 
       return container3;
     case 'bibItemsEntry':
-      console.log(`Run ${className}`);
+      // console.log(`Run ${className}`);
       template = collectData(htmlCode);
       template = {
         url,

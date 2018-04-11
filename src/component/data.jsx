@@ -11,8 +11,6 @@ class Data extends React.Component {
       url: null,
       value: this.props.value,
     };
-    console.log(`index: ${this.state.index}`);
-    console.log(`value: ${this.state.value}`);
   }
   async componentDidMount() {
     const data = await parser(this.state.value);

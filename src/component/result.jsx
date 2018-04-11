@@ -8,7 +8,6 @@ class Result extends React.Component {
     this.state = {
       container: this.props.container,
     };
-    console.log(`this.state.container: ${this.state.container}`);
   }
   componentWillReceiveProps(nextProps) {
     this.setState({
