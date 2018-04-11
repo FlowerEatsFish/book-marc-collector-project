@@ -4,12 +4,22 @@ import { connect } from 'react-redux';
 import Result from './result.jsx';
 
 class ResultNav extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      container: this.props.container,
+    };
+  }
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      container: nextProps.container,
+    });
+  }
   render() {
-    const { container } = this.props;
     return (
       <div className="result-nav">
-        { container
-        ? <Result container={container} />
+        { this.state.container
+        ? <Result container={this.state.container} />
         : null
         }
       </div>

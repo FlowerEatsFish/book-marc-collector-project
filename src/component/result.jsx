@@ -7,20 +7,13 @@ class Result extends React.Component {
     super(props);
     this.state = {
       container: this.props.container,
-      html: null,
     };
     console.log(`this.state.container: ${this.state.container}`);
   }
-  componentWillMount() {
-    const html = [];
-    if (this.state.container) {
-      this.state.container.forEach((value, index) => {
-        html.push(<Data index={index + 1} value={value} />);
-      });
-      this.setState({
-        html,
-      });
-    }
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      container: nextProps.container,
+    });
   }
   render() {
     return (
@@ -31,7 +24,11 @@ class Result extends React.Component {
           <p>已配對圖書館</p>
           <p>已配對網址</p>
         </div>
-        {this.state.html}
+        {
+          this.state.container.map((value, index) => {
+            return <Data index={index + 1} value={value} />;
+          })
+        }
       </React.Fragment>
     );
   }
