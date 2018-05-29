@@ -1,5 +1,5 @@
 const initialState = {
-  container: '',
+  container: [],
 };
 
 export default initialState;

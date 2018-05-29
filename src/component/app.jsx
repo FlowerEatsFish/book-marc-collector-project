@@ -1,7 +1,7 @@
 import React from 'react';
 import Title from './title.jsx';
 import Input from './input.jsx';
-import ResultNav from './result-nav.jsx';
+import Result from './result.jsx';
 import '../style/master.scss';
 
 class App extends React.Component {
@@ -10,7 +10,7 @@ class App extends React.Component {
       <div className="master">
         <Title />
         <Input />
-        <ResultNav />
+        <Result />
       </div>
     );
   }

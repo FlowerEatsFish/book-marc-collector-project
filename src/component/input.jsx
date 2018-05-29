@@ -15,9 +15,10 @@ class Input extends React.Component {
       value: event.target.value,
     });
   }
-  handleClick() {
+  async handleClick() {
     const { onSetIsbnPool } = this.props;
-    onSetIsbnPool(this.state.value);
+    await onSetIsbnPool('');
+    await onSetIsbnPool(this.state.value);
   }
   render() {
     return (
