@@ -105,8 +105,8 @@ const collectAllResult = async (isbn) => {
       template = collectData(htmlCode);
       container1 = container1.concat(template);
 
-      for (const value of container1) {
-        htmlCode = await collectHtmlCode(value);
+      for (const value1 of container1) {
+        htmlCode = await collectHtmlCode(value1);
         className = getClassName(htmlCode);
 
         switch (className) {
@@ -115,11 +115,11 @@ const collectAllResult = async (isbn) => {
             container2 = container2.concat(template);
             await sleep(250);
 
-            for (const value of container2) {
-              htmlCode = await collectHtmlCode(value);
+            for (const value2 of container2) {
+              htmlCode = await collectHtmlCode(value2);
               template = collectData(htmlCode);
               template = {
-                url: value,
+                url: value2,
                 library: template,
               };
               container3 = container3.concat(template);
@@ -129,7 +129,7 @@ const collectAllResult = async (isbn) => {
           case 'bibItemsEntry':
             template = collectData(htmlCode);
             template = {
-              url: value,
+              url: value1,
               library: template,
             };
             container3 = container3.concat(template);
