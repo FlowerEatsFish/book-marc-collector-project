@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import parser from '../parser/parser.js';
+import parser from '../parser/parser';
 
 class Data extends React.Component {
   constructor(props) {

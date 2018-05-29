@@ -1,12 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import Data from './data.jsx';
+import Data from './data';
 
 class Result extends React.Component {
   render() {
     const { container } = this.props;
-    console.log(container);
     return (
       <div className="result-nav">
         <div className="result header">
@@ -35,9 +34,4 @@ const mapStateToProps = (state) => {
   return result;
 };
 
-const ReduxResult = connect(
-  mapStateToProps,
-  null,
-)(Result);
-
-export default ReduxResult;
+export default connect(mapStateToProps, null)(Result);

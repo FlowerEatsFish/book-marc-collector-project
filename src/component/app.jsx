@@ -1,7 +1,7 @@
 import React from 'react';
-import Title from './title.jsx';
-import Input from './input.jsx';
-import Result from './result.jsx';
+import Title from './title';
+import Input from './input';
+import Result from './result';
 import '../style/master.scss';
 
 class App extends React.Component {

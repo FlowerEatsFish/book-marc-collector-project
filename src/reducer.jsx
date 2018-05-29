@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import initialState from './store.jsx';
+import initialState from './store';
 
 const parserIsbn = (val) => {
   let res = val;

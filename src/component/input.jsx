@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { setIsbnPool } from '../action.jsx';
+import { setIsbnPool } from '../action';
 
 class Input extends React.Component {
   constructor(props) {
@@ -54,9 +54,4 @@ const mapDispatchToProps = (dispatch) => {
   return result;
 };
 
-const ReduxInput = connect(
-  null,
-  mapDispatchToProps,
-)(Input);
-
-export default ReduxInput;
+export default connect(null, mapDispatchToProps)(Input);

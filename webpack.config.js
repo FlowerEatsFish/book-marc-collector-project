@@ -2,14 +2,17 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require('path');
 
 module.exports = {
+  mode: 'development',
   watch: true,
   entry: {
+    polyfill: 'babel-polyfill',
+    design: ['antd', 'moment'],
     bundle: './src/master.jsx',
   },
   output: {
     path: path.join(__dirname, '/dist'),
     publicPath: 'dist/',
-    filename: './js/bundle.js',
+    filename: './js/[name].js',
   },
   module: {
     rules: [
@@ -19,36 +22,21 @@ module.exports = {
           loader: 'babel-loader',
           options: {
             presets: ['env', 'react'],
-            plugins: [
-              ['transform-runtime', {
-                helpers: false,
-                polyfill: false,
-                regenerator: true,
-              }],
-              'transform-async-to-generator',
-            ],
           },
         },
       },
       {
         test: /\.css$/,
-        use: [{
-          loader: MiniCssExtractPlugin.loader,
-        }, {
-          loader: 'css-loader',
-        }],
+        use: [MiniCssExtractPlugin.loader, 'css-loader'],
       },
       {
         test: /\.scss$/,
-        use: [{
-          loader: MiniCssExtractPlugin.loader,
-        }, {
-          loader: 'css-loader',
-        }, {
-          loader: 'sass-loader',
-        }],
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
       },
     ],
+  },
+  resolve: {
+    extensions: ['.js', '.jsx'],
   },
   plugins: [
     new MiniCssExtractPlugin({
