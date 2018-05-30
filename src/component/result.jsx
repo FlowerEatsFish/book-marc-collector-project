@@ -13,6 +13,8 @@ class Result extends React.Component {
           <p>ISBN</p>
           <p>已配對圖書館</p>
           <p>已配對網址</p>
+          <p>標記</p>
+          <p>註解</p>
         </div>
         { container.map((value, index) => <Data index={index + 1} value={value} />) }
       </div>

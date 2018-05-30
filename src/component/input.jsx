@@ -1,47 +1,35 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { Input } from 'antd';
 import { setIsbnPool } from '../action';
 
-class Input extends React.Component {
+const Search = Input.Search;
+
+class InputBlock extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { value: '' };
-    this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
   }
-  handleChange(event) {
-    this.setState({
-      value: event.target.value,
-    });
-  }
-  async handleClick() {
+  async handleClick(value) {
     const { onSetIsbnPool } = this.props;
     await onSetIsbnPool('');
-    await onSetIsbnPool(this.state.value);
+    await onSetIsbnPool(value);
   }
   render() {
     return (
       <div className="input">
-        <input
-          className="text"
-          onChange={this.handleChange}
+        <Search
           placeholder="請輸入欲查詢的 ISBN"
-          type="text"
-          value={this.state.value}
-        />
-        <input
-          className="submit"
-          onClick={this.handleClick}
-          type="button"
-          value="送出"
+          onSearch={value => this.handleClick(value)}
+          enterButton
         />
       </div>
     );
   }
 }
 
-Input.propTypes = {
+InputBlock.propTypes = {
   onSetIsbnPool: PropTypes.func.isRequired,
 };
 
@@ -54,4 +42,4 @@ const mapDispatchToProps = (dispatch) => {
   return result;
 };
 
-export default connect(null, mapDispatchToProps)(Input);
+export default connect(null, mapDispatchToProps)(InputBlock);

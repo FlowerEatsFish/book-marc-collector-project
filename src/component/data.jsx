@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Checkbox, Input } from 'antd';
 import parser from '../parser/parser';
 
 class Data extends React.Component {
@@ -32,14 +33,17 @@ class Data extends React.Component {
         </p>
         <p className="url">
           { this.state.url ?
-            <a
-              href={this.state.url}
-              target="_blank"
-            >
+            <a href={this.state.url} target="_blank">
               連結
             </a> :
             null
           }
+        </p>
+        <p className="check">
+          <Checkbox />
+        </p>
+        <p className="note">
+          <Input />
         </p>
       </div>
     );
