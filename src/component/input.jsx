@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Input } from 'antd';
 import { setIsbnPool } from '../action';
 
-const Search = Input.Search;
+const { Search } = Input;
 
 class InputBlock extends React.Component {
   constructor(props) {
