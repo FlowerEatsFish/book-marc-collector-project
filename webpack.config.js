@@ -5,8 +5,6 @@ module.exports = {
   mode: 'development',
   watch: true,
   entry: {
-    polyfill: 'babel-polyfill',
-    design: ['antd', 'moment'],
     bundle: './src/master.jsx',
   },
   output: {
@@ -41,6 +39,12 @@ module.exports = {
   },
   resolve: {
     extensions: ['.js', '.jsx'],
+  },
+  externals: {
+    antd: 'antd',
+    moment: 'Moment',
+    react: 'React',
+    'react-dom': 'ReactDOM',
   },
   plugins: [
     new MiniCssExtractPlugin({
