@@ -12,13 +12,9 @@ const book = (state = initialState, action) => {
   switch (action.type) {
     case 'SET_ISBN_POOL':
       if (action.val === '') {
-        return Object.assign({}, state, {
-          container: [],
-        });
+        return { ...state, container: [] };
       }
-      return Object.assign({}, state, {
-        container: parserIsbn(action.val),
-      });
+      return { ...state, container: parserIsbn(action.val) };
     default:
       return state;
   }
