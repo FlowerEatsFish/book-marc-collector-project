@@ -11,11 +11,13 @@ class InputBlock extends React.Component {
     super(props);
     this.handleClick = this.handleClick.bind(this);
   }
+
   async handleClick(value) {
     const { onSetIsbnPool } = this.props;
     await onSetIsbnPool('');
     await onSetIsbnPool(value);
   }
+
   render() {
     return (
       <div className="input">

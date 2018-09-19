@@ -1,4 +1,4 @@
-import collect from './collect.js';
+import collect from './collect';
 
 const targetLibraryList = [
   '淡江大學圖書館',
@@ -17,7 +17,7 @@ const targetLibraryList = [
   '國立高雄科技大學圖書館',
   '國立屏東大學圖書館',
   '國立公共資訊圖書館',
-  '南投縣政府文化局圖書館'
+  '南投縣政府文化局圖書館',
 ];
 
 const isEmptyData = (data) => {

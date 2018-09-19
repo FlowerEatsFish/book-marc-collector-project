@@ -6,37 +6,47 @@ import parser from '../parser/parser';
 class Data extends React.Component {
   constructor(props) {
     super(props);
+    const { index, value } = this.props;
     this.state = {
-      index: this.props.index,
+      index,
       library: null,
       url: null,
-      value: this.props.value,
+      value,
     };
   }
+
   async componentWillMount() {
-    const data = await parser(this.state.value);
+    const { value } = this.state;
+    const data = await parser(value);
     this.setState({
       library: data.target,
       url: data.url,
     });
   }
+
   render() {
+    const {
+      index, value, library, url,
+    } = this.state;
     return (
       <div className="result data">
-        <p className="index">{this.state.index}</p>
-        <p className="isbn">{this.state.value}</p>
+        <p className="index">
+          {index}
+        </p>
+        <p className="isbn">
+          {value}
+        </p>
         <p className="library">
-          { this.state.library ?
-            this.state.library :
-            '搜尋中'
-          }
+          {library ? library : '搜尋中'}
         </p>
         <p className="url">
-          { this.state.url ?
-            <a href={this.state.url} target="_blank">
-              連結
-            </a> :
-            null
+          { url
+            ? (
+              <a href={url} target="_blank">
+                連結
+              </a>
+            )
+            : null
           }
         </p>
         <p className="check">
