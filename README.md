@@ -1,2 +1,3 @@
-# project.book-marc-collection
+# Book MARC Collection Project
+
 Alpha version

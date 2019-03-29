@@ -1,5 +1,5 @@
 {
-  "name": "project.book-marc-collection",
+  "name": "book-marc-collection-project",
   "version": "0.19.0",
   "description": "Collection MARC of books from NBINET website.",
   "main": "main.js",
@@ -10,19 +10,19 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/FlowerEatFish/project.book-marc-collection.git"
+    "url": "git+https://github.com/FlowerEatFish/book-marc-collection-project.git"
   },
   "keywords": [
     "electron",
     "react",
     "redux"
   ],
-  "author": "FlowerEatFish",
+  "author": "Eating-Fish Flower",
   "license": "GPL-3.0",
   "bugs": {
-    "url": "https://github.com/FlowerEatFish/project.book-marc-collection/issues"
+    "url": "https://github.com/FlowerEatFish/book-marc-collection-project/issues"
   },
-  "homepage": "https://github.com/FlowerEatFish/project.book-marc-collection#readme",
+  "homepage": "https://github.com/FlowerEatFish/book-marc-collection-project#readme",
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.4",
