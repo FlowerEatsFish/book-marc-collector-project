@@ -1,7 +1,6 @@
 # For this project
 /dist/js/*
 /dist/bundle.css
-package-lock.json
 
 # Logs
 logs
